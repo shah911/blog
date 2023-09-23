@@ -29,7 +29,6 @@ const fetcher = async (url: string) => {
 function Comments({ postSlug }: { postSlug: string }) {
   const { status } = useSession();
   const [err, setErr] = useState(false);
-  const [loading, setLoading] = useState(false);
   const { data, mutate, isLoading } = useSWR(
     `https://blog-git-main-shah911.vercel.app/api/comments?postSlug=${postSlug}`,
     fetcher
@@ -44,9 +43,8 @@ function Comments({ postSlug }: { postSlug: string }) {
         method: "POST",
         body: JSON.stringify({ desc, postSlug }),
       });
-      setLoading(true);
+
       mutate();
-      setLoading(false);
     }
   };
 
@@ -60,13 +58,11 @@ function Comments({ postSlug }: { postSlug: string }) {
             className={styles.input}
             onChange={(e) => setDesc(e.target.value)}
           />
-          {loading ? (
-            <Spinner />
-          ) : (
-            <button className={styles.button} onClick={handleSubmit}>
-              Comment
-            </button>
-          )}
+
+          <button className={styles.button} onClick={handleSubmit}>
+            Comment
+          </button>
+
           {err && (
             <span>
               Please ensure that your comment consists of at least five to six
