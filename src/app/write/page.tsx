@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import { useRouter } from "next/navigation";
@@ -34,57 +34,6 @@ function Write() {
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const quillRef = useRef<any>(null);
-
-  //let quill: any = null;
-
-  // const QuillWithForwardedRef = forwardRef<typeof ReactQuill | null, any>(
-  //   (props, ref) => <ReactQuill {...props} ref={ref} />
-  // );
-
-  // const imageHandler = () => {
-  //   const input = document.createElement("input");
-  //   input.setAttribute("type", "file");
-  //   input.click();
-
-  //   // Save the cursor position
-  //   let range: any = null;
-  //   if (quillRef.current) {
-  //     range = quillRef.current.getEditor().getSelection(true);
-  //   }
-
-  //   input.onchange = async () => {
-  //     const file = input.files ? input.files[0] : null;
-  //     if (file) {
-  //       const storage = getStorage(app);
-  //       const storageRef = ref(storage, "images/" + file.name);
-
-  //       const uploadTask = uploadBytesResumable(storageRef, file);
-
-  //       uploadTask.on(
-  //         "state_changed",
-  //         (snapshot) => {
-  //           // Handle the upload progress
-  //           const progress =
-  //             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //           console.log("Upload is " + progress + "% done");
-  //         },
-  //         (error) => {
-  //           // Handle unsuccessful uploads
-  //         },
-  //         () => {
-  //           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //             if (quillRef.current && range) {
-  //               quillRef.current
-  //                 .getEditor()
-  //                 .insertEmbed(range.index, "image", downloadURL);
-  //             }
-  //           });
-  //         }
-  //       );
-  //     }
-  //   };
-  // };
 
   const modules = useMemo(
     () => ({
@@ -101,9 +50,6 @@ function Write() {
           ["link", "image", "video"],
           ["clean"],
         ],
-        // handlers: {
-        //   image: imageHandler,
-        // },
       },
     }),
     []
@@ -261,7 +207,6 @@ function Write() {
                 </div>
               )}
               <ReactQuill
-                //ref={quillRef}
                 className={styles.textArea}
                 placeholder="Tell Your Story"
                 value={value}

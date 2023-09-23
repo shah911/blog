@@ -16,7 +16,7 @@ type PostType = {
 
 const getData = async (page: number, cat: string) => {
   const res = await fetch(
-    `https://blog-d4vpwiudu-shah911.vercel.app/api/posts?page=${page}&cat=${
+    `https://blog-git-main-shah911.vercel.app/api/posts?page=${page}&cat=${
       cat || ""
     }`,
     {

@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import Loader from "../Loader/Loader";
 import { useState } from "react";
+import Spinner from "../Spinner/Spinner";
 
 type commentType = {
   id: string;
@@ -27,18 +28,26 @@ const fetcher = async (url: string) => {
 
 function Comments({ postSlug }: { postSlug: string }) {
   const { status } = useSession();
+  const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { data, mutate, isLoading } = useSWR(
-    `https://blog-d4vpwiudu-shah911.vercel.app/api/comments?postSlug=${postSlug}`,
+    `https://blog-git-main-shah911.vercel.app/api/comments?postSlug=${postSlug}`,
     fetcher
   );
   const [desc, setDesc] = useState("");
 
   const handleSubmit = async () => {
-    await fetch("https://blog-d4vpwiudu-shah911.vercel.app/api/comments", {
-      method: "POST",
-      body: JSON.stringify({ desc, postSlug }),
-    });
-    mutate();
+    if (!desc || desc.length < 6) {
+      setErr(true);
+    } else {
+      await fetch("https://blog-git-main-shah911.vercel.app/api/comments", {
+        method: "POST",
+        body: JSON.stringify({ desc, postSlug }),
+      });
+      setLoading(true);
+      mutate();
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,9 +60,19 @@ function Comments({ postSlug }: { postSlug: string }) {
             className={styles.input}
             onChange={(e) => setDesc(e.target.value)}
           />
-          <button className={styles.button} onClick={handleSubmit}>
-            Comment
-          </button>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <button className={styles.button} onClick={handleSubmit}>
+              Comment
+            </button>
+          )}
+          {err && (
+            <span>
+              Please ensure that your comment consists of at least five to six
+              characters
+            </span>
+          )}
         </div>
       ) : (
         <Link href="/login">Login To Comment</Link>

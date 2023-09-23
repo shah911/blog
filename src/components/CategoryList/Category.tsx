@@ -13,7 +13,7 @@ const url = process.env.NEXTAUTH_URL!;
 
 const getData = async () => {
   const res = await fetch(
-    `https://blog-d4vpwiudu-shah911.vercel.app/api/categories`,
+    `https://blog-git-main-shah911.vercel.app/api/categories`,
     {
       cache: "no-store",
     }
