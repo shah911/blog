@@ -201,7 +201,7 @@ function Write() {
     if (status === "unauthenticated") {
       router.push("/");
     }
-  }, [status]);
+  }, [status, router]);
 
   if (status === "loading") {
     return <Loader />;
