@@ -13,6 +13,7 @@ type PostType = {
   createdAt: string;
   slug: string;
 };
+//https://blog-d4vpwiudu-shah911.vercel.app
 
 const getData = async (page: number, cat: string) => {
   const res = await fetch(
