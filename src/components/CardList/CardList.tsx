@@ -73,7 +73,7 @@ function CardList({ cat }: { cat: string }) {
     if (!allPostsLoaded) {
       loadPosts();
     }
-  }, [page, cat, allPostsLoaded]);
+  }, [page]);
 
   return (
     <div className={styles.container}>
