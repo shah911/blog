@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/context/ThemeContext.tsx",
-    "src/app/api/comments/route.js"
+    "src/app/api/comments/route.js",
+    "src/app/write/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

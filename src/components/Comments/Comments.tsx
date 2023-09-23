@@ -28,13 +28,13 @@ const fetcher = async (url: string) => {
 function Comments({ postSlug }: { postSlug: string }) {
   const { status } = useSession();
   const { data, mutate, isLoading } = useSWR(
-    `https://nextblog-r9tmzoy1q-shah911.vercel.app/api/comments?postSlug=${postSlug}`,
+    `https://blog-d4vpwiudu-shah911.vercel.app/api/comments?postSlug=${postSlug}`,
     fetcher
   );
   const [desc, setDesc] = useState("");
 
   const handleSubmit = async () => {
-    await fetch("/api/comments", {
+    await fetch("https://blog-d4vpwiudu-shah911.vercel.app/api/comments", {
       method: "POST",
       body: JSON.stringify({ desc, postSlug }),
     });
@@ -61,7 +61,7 @@ function Comments({ postSlug }: { postSlug: string }) {
       {isLoading ? (
         <Loader />
       ) : (
-        data.map((item: commentType) => (
+        data?.map((item: commentType) => (
           <div className={styles.comments} key={item.id}>
             <div className={styles.comment}>
               {item?.user?.image && (

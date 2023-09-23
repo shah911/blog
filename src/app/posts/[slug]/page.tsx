@@ -9,13 +9,12 @@ interface SinglePostProps {
   };
 }
 
+const url = process.env.NEXTAUTH_URL!;
+
 const getData = async (slug: string) => {
-  const res = await fetch(
-    `https://nextblog-r9tmzoy1q-shah911.vercel.app/api/posts/${slug}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`${url}/api/posts/${slug}`, {
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("Failed to get the post");
   }

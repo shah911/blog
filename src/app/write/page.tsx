@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import { useRouter } from "next/navigation";
@@ -261,7 +261,7 @@ function Write() {
                 </div>
               )}
               <ReactQuill
-                // ref={quillRef}
+                //ref={quillRef}
                 className={styles.textArea}
                 placeholder="Tell Your Story"
                 value={value}
