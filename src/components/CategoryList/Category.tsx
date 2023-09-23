@@ -12,9 +12,12 @@ type DataType = {
 const url = process.env.NEXTAUTH_URL!;
 
 const getData = async () => {
-  const res = await fetch(`${url}/api/categories`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `https://blog-d4vpwiudu-shah911.vercel.app/api/categories`,
+    {
+      cache: "no-store",
+    }
+  );
   if (!res.ok) {
     throw new Error("Failed to get the Categoires");
   }

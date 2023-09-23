@@ -14,9 +14,12 @@ type postType = {
 const url = process.env.NEXTAUTH_URL!;
 
 const getData = async () => {
-  const res = await fetch(`${url}/api/posts?latest=true`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `https://blog-d4vpwiudu-shah911.vercel.app/api/posts?latest=true`,
+    {
+      cache: "no-store",
+    }
+  );
   if (!res.ok) {
     throw new Error("Failed to get the posts");
   }
