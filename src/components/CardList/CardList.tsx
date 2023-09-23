@@ -16,7 +16,9 @@ type PostType = {
 
 const getData = async (page: number, cat: string) => {
   const res = await fetch(
-    `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+    `https://nextblog-r9tmzoy1q-shah911.vercel.app/api/posts?page=${page}&cat=${
+      cat || ""
+    }`,
     {
       cache: "no-store",
     }

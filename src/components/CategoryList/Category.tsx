@@ -10,9 +10,12 @@ type DataType = {
 };
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    "https://nextblog-r9tmzoy1q-shah911.vercel.app/api/categories",
+    {
+      cache: "no-store",
+    }
+  );
   if (!res.ok) {
     throw new Error("Failed to get the Categoires");
   }

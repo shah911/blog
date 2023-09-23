@@ -28,7 +28,7 @@ const fetcher = async (url: string) => {
 function Comments({ postSlug }: { postSlug: string }) {
   const { status } = useSession();
   const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+    `https://nextblog-r9tmzoy1q-shah911.vercel.app/api/comments?postSlug=${postSlug}`,
     fetcher
   );
   const [desc, setDesc] = useState("");
