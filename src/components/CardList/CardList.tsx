@@ -19,10 +19,7 @@ const getData = async (page: number, cat: string) => {
   const res = await fetch(
     `https://blog-git-main-shah911.vercel.app/api/posts?page=${page}&cat=${
       cat || ""
-    }`,
-    {
-      cache: "no-store",
-    }
+    }`
   );
   if (!res.ok) {
     throw new Error("Failed to get the posts");
